@@ -77,7 +77,6 @@ class Smallnet(nn.Module):
         
         t.nn.init.uniform_(self.tumorclass.weight,-1,1)
         
-        self.softmax = nn.Softmax(dim = -1)
         
         
     def forward(self,x):
@@ -101,23 +100,10 @@ class Smallnet(nn.Module):
         p = self.patient(x)
         y = self.tumorclass(x)
         
-        p = self.softmax(p)
-        y = self.softmax(y)
-        
 #        print(y)
         
         return p,y
 
-    def printnorm(self, input, output):
-        print('Inside ' + self.__class__.__name__ + ' forward')
-        print('')
-        print('input: ', type(input))
-        print('input[0]: ', type(input[0]))
-        print('output: ', type(output))
-        print('')
-        print('input size:', input[0].size())
-        print('output size:', output.data.size())
-        print('output norm:', output.data.norm())
 
 
 
